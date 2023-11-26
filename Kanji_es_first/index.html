@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>漢字フラッシュ</title>
+    <script>
+        var spanSec = 0;
+        var time;
+        var speed = 1000;
+        var startButton;
+        var stopButton;
+        var intervalId;
+        var a = "一右雨円王音下火花貝学気九休玉金空月犬見五口校左三山子四糸字耳七車手十出女小上森人水正生青夕石赤千川先早草足村大男竹中虫町天田土二日入年白八百文木本名目立力林六".split("");
+        var b = "アイウエオカキクケコサシスセソタチツテト".split("");
+
+        window.onload = function () {
+
+            time = document.getElementById('time');
+
+            // time.innerHTML = spanSec;
+            time.innerHTML = a[Math.floor(Math.random() * a.length)];
+            // time.innerHTML = b[Math.floor(Math.random() * b.length)];
+            startButton = document.getElementById('start');
+            stopButton = document.getElementById('stop');
+            resetButton = document.getElementById('reset');
+
+            startButton.onclick = function () {
+                let speedRadio = document.getElementsByName('speed');
+                let len = speedRadio.length;
+                speedRadio[0].checked = '';
+
+                // let checkValue = speed;
+                for (let i = 0; i < len; i++) {
+                    if (speedRadio.item(i).checked) {
+                        checkValue = speedRadio.item(i).value;
+                        speed = speedRadio.item(i).value;
+                        // console.log(speedRadio.item(i).checked);
+                        console.log(speed);
+                    };
+                };
+
+                // console.log(checkValue);
+                console.log(len);
+                start();
+
+            };
+
+            stopButton.onclick = function () {
+                stop();
+            };
+
+        };
+
+        function start() {
+            if (intervalId == null) {
+                intervalId = setInterval(function () {
+                    spanSec++;
+                    // time.innerHTML = spanSec;
+                    time.innerHTML = a[Math.floor(Math.random() * a.length)];
+                    // time.innerHTML = b[Math.floor(Math.random() * b.length)];
+                }, speed);
+            }
+            console.log("aa" + speed);
+        }
+
+        function stop() {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+
+        function reset() {
+            spanSec = 0;
+            time.innerHTML = spanSec;
+
+        }
+    </script>
+</head>
+
+<body>
+    <h1 id="time"></h1>
+    <label for=""><input type="radio" name="speed" value="1000">1秒</label>
+    <label for=""><input type="radio" name="speed" value="500">0.5秒</label>
+    <label for=""><input type="radio" name="speed" value="300">0.3秒</label>
+    <br>
+    <button id="start">START</button>
+    <button id="stop">STOP</button>
+</body>
+
+</html>
