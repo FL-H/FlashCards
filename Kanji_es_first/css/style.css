@@ -35,4 +35,8 @@ button {
         margin-right: auto;
         text-align: center;
     }
+
+    h1{
+        margin: 20% 0;
+    }
 }
